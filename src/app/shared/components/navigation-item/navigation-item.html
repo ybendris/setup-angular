@@ -1,0 +1,26 @@
+<button
+    class="example-menu-bar-item"
+    cdkMenuItem
+    [cdkMenuTriggerFor]="menu"
+    (cdkMenuOpened)="onOpenMenu()"
+    (cdkMenuClosed)="onCloseMenu()"
+    [class.active]="isActive()"
+    [class.open]="isOpen()"
+>
+    {{ navigationMenu().name }}
+</button>
+
+<ng-template #menu>
+    @for (subMenu of navigationMenu().items; track $index) {
+        <div class="example-menu" cdkMenu>
+            <button
+                class="example-menu-item"
+                cdkMenuItem
+                [routerLink]="subMenu.route"
+                routerLinkActive="active"
+            >
+                Share
+            </button>
+        </div>
+    }
+</ng-template>
